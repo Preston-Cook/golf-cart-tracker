@@ -13,7 +13,7 @@ export default function Navbar() {
   const activeClasses =
     "block py-2 px-3 text-white bg-[#5A3E2B] rounded md:bg-transparent text-white md:p-0";
   const inactiveClasses =
-    "block py-2 px-3 text-[#5A3E2B] rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0";
+    "block py-2 px-3 text-[#5A3E2B] rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0";
 
   return (
     <nav className=" border-gray-200 bg-[#d38e31]">
@@ -68,14 +68,14 @@ export default function Navbar() {
 
               return (
                 <li key={i}>
-                  <a
+                  <Link
                     href={route}
                     className={
                       pathname === route ? activeClasses : inactiveClasses
                     }
                   >
                     {el}
-                  </a>
+                  </Link>
                 </li>
               );
             })}
