@@ -51,6 +51,9 @@ export default function Contact() {
 
     if (res.status === 201) {
       showSuccessMessage();
+      setEmail((_prev) => "");
+      setSubject((_prev) => "");
+      setMessage((_prev) => "");
     } else {
       showErrorMessage();
     }
@@ -135,6 +138,7 @@ export default function Contact() {
             </div>
             <div className="flex mt-6">
               <button
+                disabled={isLoading}
                 type="submit"
                 className="text-[#5A3E2B] bg-[#77C7AE] rounded-full w-[60%] px-7 py-2 text-lg mx-auto"
               >
