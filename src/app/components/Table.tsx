@@ -1,6 +1,8 @@
 import prisma from "../../../lib/db";
 import formatPhoneNumber from "../../../lib/formatPhoneNumber";
 
+export const dynamic = "force-dynamic";
+
 export default async function Table() {
   const logs = await prisma.log.findMany();
 
