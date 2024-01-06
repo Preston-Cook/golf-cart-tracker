@@ -1,8 +1,6 @@
 import prisma from "../../../lib/db";
 import formatPhoneNumber from "../../../lib/formatPhoneNumber";
 
-export const dynamic = "force-dynamic";
-
 const formatter = new Intl.DateTimeFormat("en-US", {
   hour: "numeric",
   minute: "numeric",
