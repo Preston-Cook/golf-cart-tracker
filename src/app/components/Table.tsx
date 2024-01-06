@@ -2,6 +2,8 @@
 
 import formatPhoneNumber from "../../../lib/formatPhoneNumber";
 import { GolfCart } from "@prisma/client";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const formatter = new Intl.DateTimeFormat("en-US", {
   hour: "numeric",
@@ -28,6 +30,15 @@ type TableProps = {
 };
 
 export default function Table({ logs }: TableProps) {
+  const router = useRouter();
+
+  useEffect(
+    function () {
+      router.refresh();
+    },
+    [router]
+  );
+
   return (
     <div className="relative overflow-x-auto mt-8 w-[92%] mx-auto rounded-xl border-2 border-white">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
