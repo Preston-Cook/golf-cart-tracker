@@ -127,6 +127,8 @@ export default function Contact() {
                 className="placeholder:text-[#5A3E2B] h-[100%] w-[100%] box-border rounded-2xl outline-none border-transparent bg-[#FEE9B8] text-[#5A3E2B] text-sm focus:border-transparent focus:ring-0"
                 name="message"
                 id="message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 placeholder="Message here..."
                 rows={5}
               ></textarea>

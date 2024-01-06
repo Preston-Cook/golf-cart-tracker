@@ -5,6 +5,7 @@ import { FormEvent } from "react";
 import Spinner from "./Spinner";
 import { toast, ToastContainer } from "react-toastify";
 import { Monoton } from "next/font/google";
+import Link from "next/link";
 
 const monoton = Monoton({ weight: "400", subsets: ["latin"] });
 
@@ -80,7 +81,7 @@ export default function LogForm() {
         />
         <div className="py-8 px-4 mx-auto max-w-2xl lg:py-16">
           <h2
-            className={`mb-6 font-bold  text-[#5A3E2B] text-center text-2xl bg-[#77C7AE] rounded-full py-2 ${monoton.className}`}
+            className={`mb-2 font-bold  text-[#5A3E2B] text-center text-2xl bg-[#77C7AE] rounded-full py-2 ${monoton.className}`}
           >
             Book Golf Cart
           </h2>
