@@ -1,5 +1,7 @@
-import prisma from "../../../lib/db";
+"use client";
+
 import formatPhoneNumber from "../../../lib/formatPhoneNumber";
+import { GolfCart } from "@prisma/client";
 
 const formatter = new Intl.DateTimeFormat("en-US", {
   hour: "numeric",
@@ -12,9 +14,20 @@ const formatter = new Intl.DateTimeFormat("en-US", {
   timeZone: "America/Chicago",
 });
 
-export default async function Table() {
-  const logs = await prisma.log.findMany();
+type Log = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  golfCart: GolfCart;
+  createdAt: Date;
+};
 
+type TableProps = {
+  logs: Log[];
+};
+
+export default function Table({ logs }: TableProps) {
   return (
     <div className="relative overflow-x-auto mt-8 w-[92%] mx-auto rounded-xl border-2 border-white">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
