@@ -3,6 +3,17 @@ import formatPhoneNumber from "../../../lib/formatPhoneNumber";
 
 export const dynamic = "force-dynamic";
 
+const formatter = new Intl.DateTimeFormat("en-US", {
+  hour: "numeric",
+  minute: "numeric",
+  hour12: true,
+  weekday: "short",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  timeZone: "America/Chicago",
+});
+
 export default async function Table() {
   const logs = await prisma.log.findMany();
 
@@ -28,23 +39,21 @@ export default async function Table() {
         <tbody>
           {logs.length > 0 ? (
             logs.map((log) => (
-              <>
-                <tr key={log.id} className="bg-white border-b ">
-                  <th
-                    scope="row"
-                    className="px-3 py-4 font-medium text-gray-900 whitespace-nowrap text-left"
-                  >
-                    {log.firstName} {log.lastName}
-                  </th>
-                  <td className="px-3 text-left">
-                    {formatPhoneNumber(log.phone)}
-                  </td>
-                  <td className="px-3 text-left">{log.golfCart}</td>
-                  <td className="px-3 text-left">
-                    {log.createdAt.toDateString()}
-                  </td>
-                </tr>
-              </>
+              <tr key={log.id} className="bg-white border-b ">
+                <th
+                  scope="row"
+                  className="px-3 py-4 font-medium text-gray-900 whitespace-nowrap text-left"
+                >
+                  {log.firstName} {log.lastName}
+                </th>
+                <td className="px-3 text-left">
+                  {formatPhoneNumber(log.phone)}
+                </td>
+                <td className="px-3 text-left">{log.golfCart}</td>
+                <td className="px-3 text-left">
+                  {formatter.format(log.createdAt)}
+                </td>
+              </tr>
             ))
           ) : (
             <tr className="bg-white">
