@@ -25,11 +25,14 @@ interface HamburgerMenuProps {
 export function HamburgerMenu({ className }: HamburgerMenuProps) {
   const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(function () {
-    if (!isMounted) {
-      setIsMounted(true);
-    }
-  }, []);
+  useEffect(
+    function () {
+      if (!isMounted) {
+        setIsMounted(true);
+      }
+    },
+    [isMounted],
+  );
 
   return (
     <Sheet>

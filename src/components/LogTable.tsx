@@ -24,34 +24,37 @@ export function LogTable() {
   const { toast } = useToast();
   const numPages = Math.ceil(logs.length / 5);
 
-  useEffect(function () {
-    async function getLogs() {
-      setIsLoading(true);
+  useEffect(
+    function () {
+      async function getLogs() {
+        setIsLoading(true);
 
-      const res = await fetch('/api/log');
-      if (!res.ok) {
-        toast({
-          variant: 'destructive',
-          action: (
-            <div className="flex w-full items-center gap-4">
-              <OctagonAlert />
-              <span className="first-letter:capitalize">
-                Error: Something went wrong
-              </span>
-            </div>
-          ),
-        });
-        return;
+        const res = await fetch('/api/log');
+        if (!res.ok) {
+          toast({
+            variant: 'destructive',
+            action: (
+              <div className="flex w-full items-center gap-4">
+                <OctagonAlert />
+                <span className="first-letter:capitalize">
+                  Error: Something went wrong
+                </span>
+              </div>
+            ),
+          });
+          return;
+        }
+
+        const data = await res.json();
+
+        setLogs(data.data);
+        setIsLoading(false);
       }
 
-      const data = await res.json();
-
-      setLogs(data.data);
-      setIsLoading(false);
-    }
-
-    getLogs();
-  }, []);
+      getLogs();
+    },
+    [toast],
+  );
 
   return (
     <Table>
