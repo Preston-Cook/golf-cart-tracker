@@ -8,7 +8,8 @@ export async function GET() {
 
   try {
     data = await prismaClient.log.findMany();
-  } catch {
+  } catch (err) {
+    console.error(err);
     return NextResponse.json(
       { message: 'something went wrong' },
       { status: 500 },
@@ -23,7 +24,8 @@ export async function POST(req: Request) {
 
   try {
     body = await req.json();
-  } catch {
+  } catch (err) {
+    console.error(err);
     return NextResponse.json({ message: 'invalid json' }, { status: 400 });
   }
 
@@ -44,7 +46,8 @@ export async function POST(req: Request) {
         golfCart: cartNum as GolfCart,
       },
     });
-  } catch {
+  } catch (err) {
+    console.error(err);
     return NextResponse.json(
       { message: 'something went wrong' },
       { status: 500 },
