@@ -42,6 +42,8 @@ export function LogTable() {
               </div>
             ),
           });
+
+          setIsLoading(false);
           return;
         }
 

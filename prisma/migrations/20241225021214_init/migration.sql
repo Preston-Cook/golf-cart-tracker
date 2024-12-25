@@ -14,7 +14,7 @@ CREATE TABLE "log" (
 );
 
 -- CreateTable
-CREATE TABLE "ContactMessage" (
+CREATE TABLE "contact_message" (
     "id" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "first_name" TEXT NOT NULL,
@@ -23,5 +23,5 @@ CREATE TABLE "ContactMessage" (
     "email" TEXT NOT NULL,
     "message" TEXT NOT NULL,
 
-    CONSTRAINT "ContactMessage_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "contact_message_pkey" PRIMARY KEY ("id")
 );
