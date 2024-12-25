@@ -66,7 +66,7 @@ export function HamburgerMenu({ className }: HamburgerMenuProps) {
             </Link>
           </div>
         </SheetHeader>
-        <div className="flex w-full flex-1 flex-col border border-t-primary">
+        <div className="flex w-full flex-1 flex-col border border-b-transparent border-l-transparent border-r-transparent border-t-primary">
           <div className="flex flex-1 flex-col py-4">
             <div className={`flex flex-1 flex-col gap-4`}>
               <SheetDescription className="text-lg">Menu</SheetDescription>

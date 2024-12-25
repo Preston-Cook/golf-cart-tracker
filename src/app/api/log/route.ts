@@ -7,7 +7,11 @@ export async function GET() {
   let data;
 
   try {
-    data = await prismaClient.log.findMany();
+    data = await prismaClient.log.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
   } catch (err) {
     console.error(err);
     return NextResponse.json(

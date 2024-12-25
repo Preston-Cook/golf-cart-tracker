@@ -9,54 +9,21 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { useToast } from '@/hooks/use-toast';
+import { useLogs } from '@/context/LogsContext';
 import { capitalizeWord } from '@/lib/capitalizeWord';
-import { Log } from '@prisma/client';
 import parsePhoneNumber from 'libphonenumber-js';
-import { MoveLeft, MoveRight, OctagonAlert } from 'lucide-react';
+import { MoveLeft, MoveRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Spinner } from './Spinner';
 
 export function LogTable() {
-  const [logs, setLogs] = useState<Log[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { logs, isLoading, refreshLogs } = useLogs();
   const [pageNum, setPageNum] = useState(1);
-  const { toast } = useToast();
   const numPages = Math.ceil(logs.length / 5);
 
-  useEffect(
-    function () {
-      async function getLogs() {
-        setIsLoading(true);
-
-        const res = await fetch('/api/log');
-        if (!res.ok) {
-          toast({
-            variant: 'destructive',
-            action: (
-              <div className="flex w-full items-center gap-4">
-                <OctagonAlert />
-                <span className="first-letter:capitalize">
-                  Error: Something went wrong
-                </span>
-              </div>
-            ),
-          });
-
-          setIsLoading(false);
-          return;
-        }
-
-        const data = await res.json();
-
-        setLogs(data.data);
-        setIsLoading(false);
-      }
-
-      getLogs();
-    },
-    [toast],
-  );
+  useEffect(function () {
+    refreshLogs();
+  }, []);
 
   return (
     <Table>

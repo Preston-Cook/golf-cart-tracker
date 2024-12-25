@@ -2,6 +2,7 @@ import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { ProgressBar } from '@/components/ProgressBar';
 import { Toaster } from '@/components/ui/toaster';
+import { LogsProvider } from '@/context/LogsContext';
 import { ThemeProvider } from '@/context/ThemeProvider';
 import type { Metadata } from 'next';
 import { Inter, Roboto } from 'next/font/google';
@@ -48,11 +49,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ProgressBar />
-          <Header />
-          <main className="flex flex-1 flex-col p-4">{children}</main>
-          <Footer />
-          <Toaster />
+          <LogsProvider>
+            <ProgressBar />
+            <Header />
+            <main className="flex flex-1 flex-col p-4">{children}</main>
+            <Footer />
+            <Toaster />
+          </LogsProvider>
         </ThemeProvider>
       </body>
     </html>
