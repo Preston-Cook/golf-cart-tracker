@@ -1,20 +1,34 @@
-import type { Metadata } from "next";
-import { Inter, Monoton } from "next/font/google";
-import "./globals.css";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import "react-toastify/dist/ReactToastify.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Footer } from '@/components/Footer';
+import { Header } from '@/components/Header';
+import { ProgressBar } from '@/components/ProgressBar';
+import { Toaster } from '@/components/ui/toaster';
+import { ThemeProvider } from '@/context/ThemeProvider';
+import type { Metadata } from 'next';
+import { Inter, Roboto } from 'next/font/google';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: "Port-A Getaway Golf Cart Tracker",
+  title: 'Port-A Getaway Golf Cart Tracker',
   description:
-    "A golf cart tracker for Longhorns for Christ during their time at Port Aransas",
+    'A golf cart tracker for Longhorns for Christ during their time at Port Aransas',
   icons: {
-    icon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏝️</text></svg>",
+    icon: '/images/lfc-logo.png',
   },
 };
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  weight: '500',
+  display: 'swap',
+});
+
+const roboto = Roboto({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: '300',
+  variable: '--font-roboto',
+});
 
 export default function RootLayout({
   children,
@@ -22,17 +36,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body
-        className={`flex flex-col min-h-screen h-auto ${inter.className} bg-[#5A3E2B]`}
-      >
-        <Header />
-        {children}
-        <Footer />
-        <script
-          defer
-          src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.js"
-        ></script>
+    <html
+      suppressHydrationWarning
+      lang="en"
+      className={`${inter.variable} ${roboto.variable}`}
+    >
+      <body className={'flex min-h-screen flex-col antialiased'}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ProgressBar />
+          <Header />
+          <main className="flex flex-1 flex-col p-4">{children}</main>
+          <Footer />
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -12,14 +12,30 @@ datasource db {
 
 model Log {
   id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  firstName String
-  lastName  String
+  createdAt DateTime @default(now()) @map("created_at")
+  firstName String   @map("first_name")
+  lastName  String   @map("last_name")
   phone     String
-  golfCart  GolfCart
+  golfCart  GolfCart @map("golf_cart")
+
+  @@map("log")
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  firstName String   @map("first_name")
+  lastName  String   @map("last_name")
+  phone     String
+  email     String
+  message   String
+
+  @@map("contact_message")
 }
 
 enum GolfCart {
-  One
-  Two
+  ONE
+  TWO
+  THREE
+  FOUR
 }
