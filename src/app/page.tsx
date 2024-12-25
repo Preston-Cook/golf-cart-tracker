@@ -3,6 +3,8 @@ import { Separator } from '@/components/ui/separator';
 import { Calendar } from 'lucide-react';
 
 export default async function Contact() {
+  console.log(process.env.DATABASE_URL);
+
   return (
     <div className="flex w-full flex-1 items-center justify-center">
       <div className="flex w-full flex-col gap-4 rounded border border-primary bg-secondary p-4 md:w-fit">
