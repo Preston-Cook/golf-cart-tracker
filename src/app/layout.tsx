@@ -4,6 +4,7 @@ import { ProgressBar } from '@/components/ProgressBar';
 import { Toaster } from '@/components/ui/toaster';
 import { LogsProvider } from '@/context/LogsContext';
 import { ThemeProvider } from '@/context/ThemeProvider';
+import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import { Inter, Roboto } from 'next/font/google';
 import './globals.css';
@@ -57,6 +58,7 @@ export default function RootLayout({
             <Toaster />
           </LogsProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
