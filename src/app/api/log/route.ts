@@ -1,4 +1,4 @@
-import { prismaClient } from '@/lib/prismaClient';
+import prisma from '@/lib/prismaClient';
 import { logFormSchema } from '@/schemas/logFormSchema';
 import { GolfCart } from '@prisma/client';
 import { NextResponse } from 'next/server';
@@ -7,7 +7,7 @@ export async function GET() {
   let data;
 
   try {
-    data = await prismaClient.log.findMany({
+    data = await prisma.log.findMany({
       orderBy: {
         createdAt: 'desc',
       },
@@ -42,7 +42,7 @@ export async function POST(req: Request) {
   const { firstName, lastName, phone, cartNum } = data.data;
 
   try {
-    await prismaClient.log.create({
+    await prisma.log.create({
       data: {
         firstName,
         lastName,

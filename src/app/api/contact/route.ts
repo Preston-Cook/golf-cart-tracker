@@ -1,4 +1,4 @@
-import { prismaClient } from '@/lib/prismaClient';
+import prisma from '@/lib/prismaClient';
 import { sendContactEmail } from '@/lib/sendContactEmail';
 import { contactFormSchema } from '@/schemas/contactFormSchema';
 import { NextResponse } from 'next/server';
@@ -28,7 +28,7 @@ export async function POST(req: Request) {
   }
 
   try {
-    await prismaClient.contactMessage.create({
+    await prisma.contactMessage.create({
       data: data.data,
     });
   } catch {

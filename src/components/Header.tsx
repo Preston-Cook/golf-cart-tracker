@@ -24,15 +24,17 @@ export async function Header() {
       <div className="hidden items-center gap-x-4 md:flex">
         <DarkModeToggle className="p-4" />
         {headerLinks.map(({ href, name, icon: Icon }) => (
-          <Link key={uuid()} href={href}>
-            <Button
-              className="w-25 flex items-center justify-center"
-              variant={'outline'}
-            >
+          <Button
+            key={uuid()}
+            asChild
+            className="w-25 flex items-center justify-center"
+            variant={'outline'}
+          >
+            <Link href={href}>
               <Icon />
               {name}
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         ))}
       </div>
       <HamburgerMenu className="md:hidden" />

@@ -25,11 +25,14 @@ export async function Footer() {
       </div>
       <div className="flex w-full flex-wrap items-center justify-center gap-x-5">
         {footerLinks.map(({ name, href }) => (
-          <Link key={uuid()} href={href}>
-            <Button className="p-0 font-semibold" variant={'link'}>
-              {name}
-            </Button>
-          </Link>
+          <Button
+            key={uuid()}
+            asChild
+            className="p-0 font-semibold"
+            variant={'link'}
+          >
+            <Link href={href}>{name}</Link>
+          </Button>
         ))}
       </div>
       <div className="flex w-full items-center justify-center">

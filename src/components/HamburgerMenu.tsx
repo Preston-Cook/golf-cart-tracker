@@ -36,7 +36,7 @@ export function HamburgerMenu({ className }: HamburgerMenuProps) {
 
   return (
     <Sheet>
-      <SheetTrigger className={className}>
+      <SheetTrigger asChild className={className}>
         <Button
           className={`${isMounted ? 'block' : 'hidden'}`}
           variant={'outline'}
@@ -72,9 +72,11 @@ export function HamburgerMenu({ className }: HamburgerMenuProps) {
               <SheetDescription className="text-lg">Menu</SheetDescription>
               <div className={'flex flex-col gap-4'}>
                 {headerLinks.map(({ href, name }) => (
-                  <Link key={uuid()} href={href} className="w-full">
-                    <Button className="w-full">{name}</Button>
-                  </Link>
+                  <Button key={uuid()} asChild className="w-full">
+                    <Link href={href} className="w-full">
+                      {name}
+                    </Link>
+                  </Button>
                 ))}
               </div>
             </div>
