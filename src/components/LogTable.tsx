@@ -21,9 +21,12 @@ export function LogTable() {
   const [pageNum, setPageNum] = useState(1);
   const numPages = Math.ceil(logs.length / 5);
 
-  useEffect(function () {
-    refreshLogs();
-  }, []);
+  useEffect(
+    function () {
+      refreshLogs();
+    },
+    [refreshLogs],
+  );
 
   return (
     <Table>
