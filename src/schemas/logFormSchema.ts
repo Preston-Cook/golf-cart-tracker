@@ -17,7 +17,7 @@ export const logFormSchema = z.object({
     }),
   cartNum: z
     .string({ required_error: 'Golf cart number is required' })
-    .refine((val) => ['ONE', 'TWO', 'THREE', 'FOUR'].includes(val), {
+    .refine((val) => ['ONE', 'TWO', 'THREE'].includes(val), {
       message: 'Invalid golf cart number',
     }),
 });

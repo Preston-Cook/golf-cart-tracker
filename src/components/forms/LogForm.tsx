@@ -169,9 +169,6 @@ export function LogForm() {
                       <SelectItem className="cursor-pointer" value="THREE">
                         Three
                       </SelectItem>
-                      <SelectItem className="cursor-pointer" value="FOUR">
-                        Four
-                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </FormControl>
