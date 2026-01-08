@@ -3,6 +3,7 @@ import { contactFormSchema } from '@/schemas/contactFormSchema';
 import { z } from 'zod';
 
 const CONTACT_RECIPIENT_EMAIL = process.env.CONTACT_RECIPIENT_EMAIL as string;
+const CONTACT_SENDER_EMAIL = process.env.CONTACT_SENDER_EMAIL as string;
 
 export async function sendContactEmail({
   firstName,
@@ -12,7 +13,7 @@ export async function sendContactEmail({
   message,
 }: z.infer<typeof contactFormSchema>) {
   const { data, error } = await resendClient.emails.send({
-    from: 'Acme <onboarding@resend.dev>',
+    from: CONTACT_SENDER_EMAIL,
     to: CONTACT_RECIPIENT_EMAIL,
     subject: `LFC Golf Cart Tracker - Contact Message: ${firstName} ${lastName}`,
     text: `
